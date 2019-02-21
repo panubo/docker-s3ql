@@ -11,7 +11,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Runtime requirements
 apt-get update
-apt-get -y install python3 python3-llfuse python3-cryptography python3-dugong python3-defusedxml python3-apsw python3-requests
+apt-get -y install psmisc libsqlite3-0 python3 python3-llfuse python3-cryptography python3-dugong python3-defusedxml python3-apsw python3-requests
 
 # Install build requirements
 BUILD_REQS='curl bzip2 python3-setuptools python3-dev libsqlite3-dev build-essential'
