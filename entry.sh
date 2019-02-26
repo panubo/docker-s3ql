@@ -20,8 +20,8 @@ if [ -z "$S3QL_BUCKET_NAME" ]; then
   exit 128
 fi
 
-if [ -z "$S3QL_ENCRYPTION_KEY" ]; then
-  echo "Error: S3QL_ENCRYPTION_KEY is not specified"
+if [ -z "$S3QL_ENCRYPTION_KEY" ] && [ -z "$S3QL_ACCESS_KEY" ]; then
+  echo "Error: S3QL_AUTHFILE not specified, or S3QL_ENCRYPTION_KEY not provided"
   exit 128
 fi
 
@@ -35,7 +35,7 @@ if [ ! -f "${S3QL_AUTHFILE}" ] && [ -z "$S3QL_ACCESS_SECRET" ]; then
   exit 128
 fi
 
-echo "==> Mounting S3 Filesystem"
+echo "==> Mounting S3QL Filesystem"
 mkdir -p ${S3QL_MOUNTPOINT} ${S3QL_DATADIR}
 
 # Write auth file if it does not exist
@@ -51,11 +51,9 @@ if [ ! -f "${S3QL_AUTHFILE}" ]; then
 fi
 
 if [ -z "$1" ]; then
-  # s3ql mount command
   set -ex
   mount.s3ql $S3QL_DEBUG $S3QL_ARGS --cachedir $S3QL_CACHEDIR --authfile $S3QL_AUTHFILE --fg $S3QL_BUCKET_NAME $S3QL_MOUNTPOINT
 else
-  # s3ql mount command
   (set -ex; mount.s3ql $S3QL_DEBUG $S3QL_ARGS --cachedir $S3QL_CACHEDIR --authfile $S3QL_AUTHFILE $S3QL_BUCKET_NAME $S3QL_MOUNTPOINT)
   echo "Running command $@"
   exec "$@"
