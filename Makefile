@@ -6,10 +6,10 @@ build:
 	docker build --pull -t $(IMAGE):$(TAG) .
 
 run:
-	docker run --rm -it $(IMAGE):$(TAG)
+	docker run --rm -it --privileged $(IMAGE):$(TAG)
 
 shell:
-		docker run --rm -it $(IMAGE):$(TAG) bash
+	docker run --rm -it --entrypoint bash --privileged $(IMAGE):$(TAG)
 
 push:
 	docker tag $(IMAGE):$(TAG) $(REGISTRY)/$(IMAGE):$(TAG)

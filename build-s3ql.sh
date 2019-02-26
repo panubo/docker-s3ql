@@ -10,8 +10,9 @@ set -euo pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 # Runtime requirements
+RUNTIME_REQS='psmisc libsqlite3-0 python3 python3-llfuse python3-cryptography python3-dugong python3-defusedxml python3-apsw python3-requests'
 apt-get update
-apt-get -y install psmisc libsqlite3-0 python3 python3-llfuse python3-cryptography python3-dugong python3-defusedxml python3-apsw python3-requests
+apt-get -y install $RUNTIME_REQS
 
 # Install build requirements
 BUILD_REQS='curl bzip2 python3-setuptools python3-dev libsqlite3-dev build-essential'
@@ -41,5 +42,6 @@ find /usr/local/bin/ -type f -name '*s3ql*' -exec {} --version \;
 # Cleanup
 pip3 uninstall -y $TEST_PIP_REQS
 apt-get -y remove $BUILD_REQS $TEST_APT_REQS
+apt-get -y install $RUNTIME_REQS  # re-add cryptography
 apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 rm -- "$0"
