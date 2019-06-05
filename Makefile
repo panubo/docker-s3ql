@@ -14,3 +14,6 @@ shell:
 push:
 	docker tag $(IMAGE):$(TAG) $(REGISTRY)/$(IMAGE):$(TAG)
 	docker push $(REGISTRY)/$(IMAGE):$(TAG)
+
+clean:
+	docker rmi $(IMAGE):$(TAG)
