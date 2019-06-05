@@ -1,4 +1,4 @@
-TAG      := 3.0
+TAG      := 3.1
 IMAGE    := panubo/s3ql
 REGISTRY := docker.io
 

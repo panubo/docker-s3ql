@@ -25,7 +25,7 @@ docker run --rm -t -i --privileged \
   -e AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
   -e S3QL_ENCRYPTION_KEY=xxxxxxxxxxxxxxxx \
   -e AWS_STORAGE_BUCKET_NAME=example \
-  docker.io/panubo/s3ql
+  docker.io/panubo/s3ql:3.1
 ```
 
 NB, requires `privileged` mode for access to fuse device.

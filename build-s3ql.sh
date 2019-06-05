@@ -31,15 +31,18 @@ curl -sSf -L https://github.com/s3ql/s3ql/releases/download/release-${S3QL_VERSI
 sha1sum s3ql.tar.bz2
 echo "$S3QL_SHA1 s3ql.tar.bz2" | sha1sum -c -
 tar -xjf s3ql.tar.bz2 -C . --strip-components=1
+# Workaround pypi install issues https://github.com/s3ql/s3ql/issues/106
+# and others
+pip3 install google-auth==1.6.3
+pip3 install google-auth-oauthlib==0.3.0
 python3 setup.py build_ext --inplace
 python3 -m pytest tests/
 python3 setup.py install
-rm -rf ${DIR} && cd /
-
 # Check binaries are sane
 find /usr/local/bin/ -type f -name '*s3ql*' -exec {} --version \;
 
 # Cleanup
+rm -rf ${DIR} && cd /
 pip3 uninstall -y $TEST_PIP_REQS
 apt-get -y remove $BUILD_REQS $TEST_APT_REQS
 apt-get -y install $RUNTIME_REQS  # re-add cryptography
