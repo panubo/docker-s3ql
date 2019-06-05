@@ -20,18 +20,18 @@ if [ -z "$S3QL_BUCKET_NAME" ]; then
   exit 128
 fi
 
-if [ -z "$S3QL_ENCRYPTION_KEY" ] && [ -z "$S3QL_ACCESS_KEY" ]; then
-  echo "Error: S3QL_AUTHFILE not specified, or S3QL_ENCRYPTION_KEY not provided"
+if [ -z "$S3QL_ENCRYPTION_KEY" ]; then
+  echo "Error: S3QL_ENCRYPTION_KEY not specified"
   exit 128
 fi
 
-if [ ! -f "${S3QL_AUTHFILE}" ] && [ -z "$S3QL_ACCESS_KEY" ]; then
-  echo "Error: S3QL_AUTHFILE not specified, or S3QL_ACCESS_KEY not provided"
+if [ -z "$S3QL_ACCESS_KEY" ]; then
+  echo "Error: S3QL_ACCESS_KEY not specified"
   exit 128
 fi
 
-if [ ! -f "${S3QL_AUTHFILE}" ] && [ -z "$S3QL_ACCESS_SECRET" ]; then
-  echo "Error: S3QL_AUTHFILE not specified, or S3QL_ACCESS_SECRET not provided"
+if [ -z "$S3QL_ACCESS_SECRET" ]; then
+  echo "Error: S3QL_ACCESS_SECRET not specified"
   exit 128
 fi
 
