@@ -4,10 +4,10 @@ Docker image for [S3QL](https://github.com/s3ql/s3ql/).
 
 ## Configuration
 
-- `S3QL_ACCESS_KEY` - (required)
-- `S3QL_ACCESS_SECRET` - (required)
-- `S3QL_BUCKET_NAME` - (required)
-- `S3QL_ENCRYPTION_KEY` - (required)
+- `S3QL_ACCESS_KEY` - (required. Same as `AWS_ACCESS_KEY_ID`)
+- `S3QL_ACCESS_SECRET` - (required. Same as `AWS_SECRET_ACCESS_KEY`)
+- `S3QL_BUCKET_URL` - (required)
+- `S3QL_ENCRYPTION_PASSPHRASE` - (required)
 - `S3QL_AUTHFILE` - path to s3ql auth file.
 - `S3QL_DATADIR` - path to s3ql data directory
 - `S3QL_CACHEDIR` - path to s3ql cache directory
@@ -21,10 +21,10 @@ Docker image for [S3QL](https://github.com/s3ql/s3ql/).
 
 ```bash
 docker run --rm -t -i --privileged \
-  -e AWS_ACCESS_KEY_ID=xxxxxxxxxxxxxxxxxxxx \
-  -e AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
-  -e S3QL_ENCRYPTION_KEY=xxxxxxxxxxxxxxxx \
-  -e AWS_STORAGE_BUCKET_NAME=example \
+  -e S3QL_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxx \
+  -e S3QL_ACCESS_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
+  -e S3QL_ENCRYPTION_PASSPHRASE=xxxxxxxxxxxxxxxx \
+  -e S3QL_BUCKET_URL=example \
   docker.io/panubo/s3ql:3.1
 ```
 
